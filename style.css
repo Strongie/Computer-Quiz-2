@@ -1,11 +1,26 @@
 body {
     background-color: rgb(189, 229, 235);
     margin: 0%;
+    
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+
 }
 
 .card {
     background-color: rgb(162, 121, 201);
     width: 500px;
+    border: 2px solid rgb(174, 0, 255);
+    border-radius: 12px;
+    padding: 5px;
+    text-align: center;
+    box-shadow: 10px 10px rgb(170, 21, 230);
 
 }
 
@@ -13,5 +28,8 @@ body {
 
 #nav-bar {
     color: rgb(118, 16, 235);
-
 }
+
+
+
+
