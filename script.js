@@ -42,7 +42,8 @@ var submitButton = document.querySelector('#your-score');
 var goBackButton = document.querySelector('#go-back-btn');
 var clearHighScore = document.querySelector('#clear-high-score-btn');
 var timer = document.querySelector('#timer');
-
+var highScores = document.querySelector('#highscores');
+var quizQuestion = document.querySelector('#quiz-question');
 
 // Timer
 
@@ -60,10 +61,67 @@ function countdown(){
     }
 // Event listener for when the start quiz button is pressed
     document.getElementById("start-quiz").addEventListener("click", countdown);
-  
+    document.getElementById("start-quiz").addEventListener("click", HideWelcomeCard);
+    document.getElementById("start-quiz").addEventListener("click", askQuestion);
     
      
-//
+//function to show question card
+
+function HideWelcomeCard (){
+    welcomeCard.style.display = 'none';
+    quizCard.style.display = 'block';
+
+};
+
+// show your score and submit page
+function submitScore(){
+    quizCard.style.display = "none";
+    yourScore.style.display = "block";
+
+};
+
+//show highscores page
+
+function showHighScore (){
+    yourScore.style.display ='none';
+    highScores.style.display = "block";
+
+};
+
+function askQuestion(){
+  currentQuestion = 0;
+    var query = questions[currentQuestion];
+
+    if (currentQuestion<questions.length){
+        console.log(query);
+        quizQuestion.textContent = query.question
+
+    }
+        for (var i = 0; i < questions.length; i++) { 
+        console.log(query[i]);
+        currentQuestion ++;
+        quizQuestion.textContent = query.question
 
 
+
+// for (var i = 0; i < questions.length; i++) { 
+//     console.log(questions[i]);
+
+}
+};
+
+
+
+
+
+
+// var keys = Object.keys(questions);
+// console.log(keys);
+//place question in quizcard
+
+    
+
+
+
+ //   quizQuestion.textContent = questions.question
 
