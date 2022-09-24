@@ -15,7 +15,8 @@ main {
 
 .card {
     background-color: rgb(162, 121, 201);
-    width: 500px;
+    height: 400px;
+    width: 800px;
     border: 2px solid rgb(174, 0, 255);
     border-radius: 12px;
     padding: 5px;
@@ -28,6 +29,7 @@ main {
 
 #nav-bar {
     color: rgb(118, 16, 235);
+    height: 100px;
 }
 
 
