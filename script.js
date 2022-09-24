@@ -44,6 +44,7 @@ var clearHighScore = document.querySelector('#clear-high-score-btn');
 var timer = document.querySelector('#timer');
 var highScores = document.querySelector('#highscores');
 var quizQuestion = document.querySelector('#quiz-question');
+var options = questions[options];
 
 // Timer
 
@@ -91,23 +92,24 @@ function showHighScore (){
 function askQuestion(){
   currentQuestion = 0;
     var query = questions[currentQuestion];
-
+    var options = questions.options;
+    
     if (currentQuestion<questions.length){
-        console.log(query);
-        quizQuestion.textContent = query.question
+        quizQuestion.textContent = query.question;
 
-    }
-        for (var i = 0; i < questions.length; i++) { 
-        console.log(query[i]);
-        currentQuestion ++;
-        quizQuestion.textContent = query.question
+    };
 
-
-
-// for (var i = 0; i < questions.length; i++) { 
-//     console.log(questions[i]);
-
+    
+for (var i = 0; i < options.length; i++) { 
+    let choice = options[i];
+    console.log(choice);
+    // currentQuestion ++;
+    // quizQuestion.textContent = query.question
 }
+for (var i = 0; i < questions.length; i++) { 
+    console.log(questions[i]);
+
+};
 };
 
 
@@ -124,4 +126,3 @@ function askQuestion(){
 
 
  //   quizQuestion.textContent = questions.question
-
