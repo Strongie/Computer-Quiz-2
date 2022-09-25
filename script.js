@@ -94,27 +94,50 @@ function askQuestion(){
   currentQuestion = 0;
     var query = questions[currentQuestion];
     var options = query.options;
+    console.log(options);
     
     if (currentQuestion<questions.length){
         quizQuestion.textContent = query.question;
 
     };
 
-    console.log("object options", options);
-
+    
     for (var i = 0; i < options.length; i++) { 
     var choice = options[i];
-        console.log(choice);
-    var answerbtn = document.querySelector('#answer-button1' + i);
-        answerbtn.textContent = choice;
+    console.log(choice);
+        
+
+    var answerbtn1 = document.querySelector('#answer-button1');
+    //answerbtn.setAttribute('value', choice)
+    answerbtn1.textContent = choice;
+    console.log(answerbtn1);
+
+    // var choiceBtn1 = document.createElement('button');
+    // choiceBtn1.setAttribute('value', choice);
+    //choiceBtn1.textContent = choice[0];    
+
+};
+
+
+    
      
-    };
+    
 
     for (var i = 0; i < questions.length; i++) { 
     console.log(questions[i]);
     currentQuestion ++;
 };
 };
+
+// display answers
+
+function displayAnswers(){
+  
+
+}
+
+
+
 
 //Check answers
 
@@ -123,7 +146,7 @@ function askQuestion(){
 var submittedInformation = {
     initials: 
 
-}
+//}
 
 
 //save scores
@@ -131,34 +154,27 @@ var submittedInformation = {
 function saveScores (){
 
 
-}
+}};
 
 
 
 //event listener for go back to start
 
-goBackButton.addEventListener("click", restart);
+//goBackButton.addEventListener("click", restart);
 
 
 // return to start
-function restart (){
-    welcomeCard.style.display = 'block';
-    highScores.style.display = 'none';
-};
+// function restart (){
+//     welcomeCard.style.display = 'block';
+//     highScores.style.display = 'none';
+// };
 
-//clear high scores
+// //clear high scores
 
-clearHighScore.addEventListener("click", clearScoreBoard);
-
-
-function clearScoreBoard (){
-    localStorage.clear();
-}; 
+// clearHighScore.addEventListener("click", clearScoreBoard);
 
 
+// function clearScoreBoard (){
+//     localStorage.clear();
+// }; 
 
-    
-
-
-
- 
