@@ -103,14 +103,22 @@ function askQuestion(){
 
     
     for (var i = 0; i < options.length; i++) { 
-    var choice = options[i];
-    console.log(choice);
-        
-
+    //var choice = options[i];
+    console.log(options[i]);
+    
     var answerbtn1 = document.querySelector('#answer-button1');
-    //answerbtn.setAttribute('value', choice)
-    answerbtn1.textContent = choice;
-    console.log(answerbtn1);
+    var answerbtn2 = document.querySelector('#answer-button2');
+    var answerbtn3 = document.querySelector('#answer-button3');
+    var answerbtn4 = document.querySelector('#answer-button4');
+    // //answerbtn.setAttribute('value', choice)
+    answerbtn1.textContent = options[0];
+    //console.log(answerbtn1);
+    answerbtn2.textContent = options[1];
+    //console.log(answerbtn2);
+    answerbtn3.textContent = options[2];
+    //console.log(answerbtn3);
+    answerbtn4.textContent = options[3];
+    //console.log(answerbtn3);
 
     // var choiceBtn1 = document.createElement('button');
     // choiceBtn1.setAttribute('value', choice);
@@ -125,7 +133,7 @@ function askQuestion(){
 
     for (var i = 0; i < questions.length; i++) { 
     console.log(questions[i]);
-    currentQuestion ++;
+ //   currentQuestion ++;
 };
 };
 
