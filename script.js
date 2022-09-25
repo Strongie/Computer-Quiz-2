@@ -107,22 +107,29 @@ function askQuestion(){
         console.log(choice);
     var answerbtn = document.querySelector('#answer-button1' + i);
         answerbtn.textContent = choice;
-    // currentQuestion ++;
-    // quizQuestion.textContent = query.question
-};
-for (var i = 0; i < questions.length; i++) { 
-    console.log(questions[i]);
+     
+    };
 
+    for (var i = 0; i < questions.length; i++) { 
+    console.log(questions[i]);
+    currentQuestion ++;
 };
 };
 
 //Check answers
 
 
+// capture submit data
+var submittedInformation = {
+    initials: 
+
+}
+
+
 //save scores
 
 function saveScores (){
-        
+
 
 }
 
