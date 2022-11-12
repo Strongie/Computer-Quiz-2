@@ -39,24 +39,22 @@ console.log(questions);
 var welcomeCard = document.querySelector('#welcome-card');
 var quizCard = document.querySelector("#quiz-card");
 var yourScore = document.querySelector('#your-score');
-var submitButton = document.querySelector('#your-score');
+var submitButton = document.querySelector('#submit-btn');
 var goBackButton = document.querySelector('#go-back-btn');
 var clearHighScore = document.querySelector('#clear-high-score-btn');
 var timer = document.querySelector('#timer');
 var highScores = document.querySelector('#highscores');
 var quizQuestion = document.querySelector('#quiz-question');
-var answerbtn1 = document.querySelector('#answer-button1');
-var answerbtn2 = document.querySelector('#answer-button2');
-var answerbtn3 = document.querySelector('#answer-button3');
-var answerbtn4 = document.querySelector('#answer-button4');
-var currentQuestion;
+var currentQuestion = 0;
+var score =0;
 var initials = document.querySelector("#initials");
-
+let timeCount = 60;
 // Timer
 
 function countdown(){
-    var timeCount = 60;
-    var timeInterval = setInterval(function () {
+    console.log('countdown called');
+    console.log(timeCount);
+    let timeInterval = setInterval(function () {
         if (timeCount > 1) {
         timer.textContent = 'Time Remaining:   ' + timeCount + ' seconds';
         timeCount--;
@@ -68,10 +66,49 @@ function countdown(){
     }
 // Event listener for when the start quiz button is pressed
     document.getElementById("start-quiz").addEventListener("click", countdown);
-    document.getElementById("start-quiz").addEventListener("click", HideWelcomeCard);
-    document.getElementById("start-quiz").addEventListener("click", askQuestion);
+    document
+    .getElementById("start-quiz")
+    .addEventListener("click", HideWelcomeCard);
+    document
+    .getElementById("start-quiz")
+    .addEventListener("click", askQuestion(currentQuestion));
     
-     
+// Event Listeners
+
+document
+.getElementById('answer-button1')
+.addEventListener('click', handleAnswer);
+document
+.getElementById('answer-button2')
+.addEventListener('click', handleAnswer);
+document
+.getElementById('answer-button3')
+.addEventListener('click', handleAnswer);
+document
+.getElementById('answer-button4')
+.addEventListener('click', handleAnswer);
+document
+.getElementById('submit-btn')
+.addEventListener('click', submitScore);
+
+
+
+function handleAnswer (e) {
+    const question = questions[currentQuestion];
+    if (e.target.innerHTML == question.answer) {
+        score += 1;
+    }
+    currentQuestion += 1;
+    if (currentQuestion == questions.length){
+        showScore()
+    }
+        else{
+            askQuestion(currentQuestion)
+        };
+    }
+
+    
+
 //function to show question card
 
 function HideWelcomeCard (){
@@ -81,11 +118,20 @@ function HideWelcomeCard (){
 };
 
 // show your score and submit page
-function submitScore(){
+function showScore(){
     quizCard.style.display = "none";
     yourScore.style.display = "block";
-
+    document.getElementById("myscore").innerHTML = `Your score is ${score}`;
 };
+//  submit highscore
+
+function submitScore(){
+    // console.log('submit score is being called');
+    showHighScore();
+    saveScores();
+    
+}
+
 
 //show highscores page
 
@@ -96,89 +142,55 @@ function showHighScore (){
 };
 
 //place question in quizcard
-function askQuestion(){
-    currentQuestion = 0;
+function askQuestion(currentQuestion){
+    
     var query = questions[currentQuestion];
     var options = query.options;
     //console.log(options);
-    
+if (currentQuestion<questions.length){
     quizQuestion.textContent = query.question;
-
-    // for (const element of options) {
-    //     console.log(element);
-    //     let choice = element
-    //     let answerbtn = document.querySelector('answer-button');
-    //     answerbtn.textContent = choice[0];
- //       console.log(answerbtn);
-     // }
-
+}
+    
 
    for (var i = 0; i < options.length; i++) { 
-    var option = options[i];
-    console.log(option);
-   let answerbtn = document.querySelector("answer-button" + i);
- //  answerbtn.textContent = option[0];
-   console.log (option[i]);
-    // var answerbtn1 = document.querySelector('#answer-button1');
-    // var answerbtn2 = document.querySelector('#answer-button2');
-    // var answerbtn3 = document.querySelector('#answer-button3');
-    // var answerbtn4 = document.querySelector('#answer-button4');
-    // //answerbtn.setAttribute('value', choice)
-    // answerbtn1.textContent = options[0];
-    // //console.log(answerbtn1);
-    // answerbtn2.textContent = options[1];
-    // //console.log(answerbtn2);
-    // answerbtn3.textContent = options[2];
-    // //console.log(answerbtn3);
-    // answerbtn4.textContent = options[3];
-    //console.log(answerbtn3);
+    // var option = options[i];
+    // console.log(option);
 
-    // var choiceBtn1 = document.createElement('button');
-    // choiceBtn1.setAttribute('value', choice);
-    //choiceBtn1.textContent = choice[0];    
-
+   const answerID = "answer-button" + (i+1);
+    document.getElementById(answerID).textContent = options[i];
 };
 };
-currentQuestion ++;
-
-if (currentQuestion<questions.length){
-    askQuestion();
-    
-};
-// check answers
-// answerbtn1.addEventListener("click", correctAnswer);
-// answerbtn2.addEventListener("click", correctAnswer);
-// answerbtn3.addEventListener("click", correctAnswer);
-// answerbtn4.addEventListener("click", correctAnswer);
 
 
-function correctAnswer(){
-  //  return 
-//     //var answer = questions[currentQuestion].answer
-    if(answerbtn1.textContent !== questions[currentQuestion].answer) {
-        console.log("wrong");
-    } 
-    else {
-     console.log("correct");}
+
+
+// function correctAnswer(){
+//   //  return 
+// //     //var answer = questions[currentQuestion].answer
+//     if(answerbtn1.textContent !== questions[currentQuestion].answer) {
+//         console.log("wrong");
+//     } 
+//     else {
+//      console.log("correct");}
       
-   if(answerbtn2.textContent !== questions[currentQuestion].answer) {
-    console.log("wrong");
-} 
-else {
- console.log("correct");}
+//    if(answerbtn2.textContent !== questions[currentQuestion].answer) {
+//     console.log("wrong");
+// } 
+// else {
+//  console.log("correct");}
 
-if(answerbtn3.textContent !== questions[currentQuestion].answer) {
-    console.log("wrong");
-} 
-else {
- console.log("correct");
-}
-if(answerbtn4.textContent !== questions[currentQuestion].answer) {
-    console.log("wrong");
-} 
-else{
- console.log("correct");}
-};
+// if(answerbtn3.textContent !== questions[currentQuestion].answer) {
+//     console.log("wrong");
+// } 
+// else {
+//  console.log("correct");
+// }
+// if(answerbtn4.textContent !== questions[currentQuestion].answer) {
+//     console.log("wrong");
+// } 
+// else{
+//  console.log("correct");}
+// };
 
 
 
@@ -199,8 +211,10 @@ else{
 //save scores to local storage
 
 function saveScores (){
-
-    localStorage.setItem(initials)
+    const initialsInput = initials.value;
+    console.log(initialsInput);
+    localStorage.setItem(initialsInput, score);
+    
 };
 
 
@@ -215,7 +229,7 @@ function saveScores (){
 clearHighScore.addEventListener("click", clearScoreBoard);
 
 function clearScoreBoard (event){
-event.preventDefault();
+// event.preventDefault();
 localStorage.clear();
 }; 
 
@@ -225,9 +239,12 @@ goBackButton.addEventListener("click", restart);
 
 
 // return to start
-function restart (event){
-    event.preventDefault();
+function restart (e){
+    // e.preventDefault();
+    currentQuestion = 0;
+    score = 0;
+    timeCount = 60;
     welcomeCard.style.display = 'block';
     highScores.style.display = 'none';
-
+    
 };
