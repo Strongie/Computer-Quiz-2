@@ -45,6 +45,12 @@ var clearHighScore = document.querySelector('#clear-high-score-btn');
 var timer = document.querySelector('#timer');
 var highScores = document.querySelector('#highscores');
 var quizQuestion = document.querySelector('#quiz-question');
+var answerbtn1 = document.querySelector('#answer-button1');
+var answerbtn2 = document.querySelector('#answer-button2');
+var answerbtn3 = document.querySelector('#answer-button3');
+var answerbtn4 = document.querySelector('#answer-button4');
+var currentQuestion;
+var initials = document.querySelector("#initials");
 
 // Timer
 
@@ -91,33 +97,40 @@ function showHighScore (){
 
 //place question in quizcard
 function askQuestion(){
-  currentQuestion = 0;
+    currentQuestion = 0;
     var query = questions[currentQuestion];
     var options = query.options;
-    console.log(options);
+    //console.log(options);
     
-    if (currentQuestion<questions.length){
-        quizQuestion.textContent = query.question;
+    quizQuestion.textContent = query.question;
 
-    };
+    // for (const element of options) {
+    //     console.log(element);
+    //     let choice = element
+    //     let answerbtn = document.querySelector('answer-button');
+    //     answerbtn.textContent = choice[0];
+ //       console.log(answerbtn);
+     // }
 
-    
-    for (var i = 0; i < options.length; i++) { 
-    //var choice = options[i];
-    console.log(options[i]);
-    
-    var answerbtn1 = document.querySelector('#answer-button1');
-    var answerbtn2 = document.querySelector('#answer-button2');
-    var answerbtn3 = document.querySelector('#answer-button3');
-    var answerbtn4 = document.querySelector('#answer-button4');
+
+   for (var i = 0; i < options.length; i++) { 
+    var option = options[i];
+    console.log(option);
+   let answerbtn = document.querySelector("answer-button" + i);
+ //  answerbtn.textContent = option[0];
+   console.log (option[i]);
+    // var answerbtn1 = document.querySelector('#answer-button1');
+    // var answerbtn2 = document.querySelector('#answer-button2');
+    // var answerbtn3 = document.querySelector('#answer-button3');
+    // var answerbtn4 = document.querySelector('#answer-button4');
     // //answerbtn.setAttribute('value', choice)
-    answerbtn1.textContent = options[0];
-    //console.log(answerbtn1);
-    answerbtn2.textContent = options[1];
-    //console.log(answerbtn2);
-    answerbtn3.textContent = options[2];
-    //console.log(answerbtn3);
-    answerbtn4.textContent = options[3];
+    // answerbtn1.textContent = options[0];
+    // //console.log(answerbtn1);
+    // answerbtn2.textContent = options[1];
+    // //console.log(answerbtn2);
+    // answerbtn3.textContent = options[2];
+    // //console.log(answerbtn3);
+    // answerbtn4.textContent = options[3];
     //console.log(answerbtn3);
 
     // var choiceBtn1 = document.createElement('button');
@@ -125,24 +138,50 @@ function askQuestion(){
     //choiceBtn1.textContent = choice[0];    
 
 };
-
-
-    
-     
-    
-
-    for (var i = 0; i < questions.length; i++) { 
-    console.log(questions[i]);
- //   currentQuestion ++;
 };
+currentQuestion ++;
+
+if (currentQuestion<questions.length){
+    askQuestion();
+    
 };
+// check answers
+// answerbtn1.addEventListener("click", correctAnswer);
+// answerbtn2.addEventListener("click", correctAnswer);
+// answerbtn3.addEventListener("click", correctAnswer);
+// answerbtn4.addEventListener("click", correctAnswer);
 
-// display answers
 
-function displayAnswers(){
-  
+function correctAnswer(){
+  //  return 
+//     //var answer = questions[currentQuestion].answer
+    if(answerbtn1.textContent !== questions[currentQuestion].answer) {
+        console.log("wrong");
+    } 
+    else {
+     console.log("correct");}
+      
+   if(answerbtn2.textContent !== questions[currentQuestion].answer) {
+    console.log("wrong");
+} 
+else {
+ console.log("correct");}
 
+if(answerbtn3.textContent !== questions[currentQuestion].answer) {
+    console.log("wrong");
+} 
+else {
+ console.log("correct");
 }
+if(answerbtn4.textContent !== questions[currentQuestion].answer) {
+    console.log("wrong");
+} 
+else{
+ console.log("correct");}
+};
+
+
+
 
 
 
@@ -151,38 +190,44 @@ function displayAnswers(){
 
 
 // capture submit data
-var submittedInformation = {
-    initials: 
+// var submittedInformation = {
+//     initials: initials.value,
+//     score: 
+// };
 
-//}
 
-
-//save scores
+//save scores to local storage
 
 function saveScores (){
 
-
-}};
-
-
-
-//event listener for go back to start
-
-//goBackButton.addEventListener("click", restart);
+    localStorage.setItem(initials)
+};
 
 
-// return to start
-// function restart (){
-//     welcomeCard.style.display = 'block';
-//     highScores.style.display = 'none';
-// };
+
+
+
+
+
 
 // //clear high scores
 
-// clearHighScore.addEventListener("click", clearScoreBoard);
+clearHighScore.addEventListener("click", clearScoreBoard);
+
+function clearScoreBoard (event){
+event.preventDefault();
+localStorage.clear();
+}; 
+
+//event listener for go back to start
+
+goBackButton.addEventListener("click", restart);
 
 
-// function clearScoreBoard (){
-//     localStorage.clear();
-// }; 
+// return to start
+function restart (event){
+    event.preventDefault();
+    welcomeCard.style.display = 'block';
+    highScores.style.display = 'none';
 
+};
