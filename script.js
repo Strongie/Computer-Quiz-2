@@ -126,7 +126,7 @@ function showScore(){
 //  submit highscore
 
 function submitScore(){
-    // console.log('submit score is being called');
+   
     showHighScore();
     saveScores();
     
@@ -153,59 +153,11 @@ if (currentQuestion<questions.length){
     
 
    for (var i = 0; i < options.length; i++) { 
-    // var option = options[i];
-    // console.log(option);
-
+   
    const answerID = "answer-button" + (i+1);
     document.getElementById(answerID).textContent = options[i];
 };
 };
-
-
-
-
-// function correctAnswer(){
-//   //  return 
-// //     //var answer = questions[currentQuestion].answer
-//     if(answerbtn1.textContent !== questions[currentQuestion].answer) {
-//         console.log("wrong");
-//     } 
-//     else {
-//      console.log("correct");}
-      
-//    if(answerbtn2.textContent !== questions[currentQuestion].answer) {
-//     console.log("wrong");
-// } 
-// else {
-//  console.log("correct");}
-
-// if(answerbtn3.textContent !== questions[currentQuestion].answer) {
-//     console.log("wrong");
-// } 
-// else {
-//  console.log("correct");
-// }
-// if(answerbtn4.textContent !== questions[currentQuestion].answer) {
-//     console.log("wrong");
-// } 
-// else{
-//  console.log("correct");}
-// };
-
-
-
-
-
-
-
-//Check answers
-
-
-// capture submit data
-// var submittedInformation = {
-//     initials: initials.value,
-//     score: 
-// };
 
 
 //save scores to local storage
@@ -216,11 +168,6 @@ function saveScores (){
     localStorage.setItem(initialsInput, score);
     
 };
-
-
-
-
-
 
 
 
